@@ -3,6 +3,7 @@
 // 自訂函式
 $c=20;
 function sum($a,$b){
+    // {}區域中吃不到全域的變數，因此若要抓全域的變數，需要使用global
     global $c;
     $sum=$a+$b+$c;
     echo "輸入:".$a."、".$b;
