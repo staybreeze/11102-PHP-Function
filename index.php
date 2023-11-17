@@ -36,30 +36,46 @@
         // 因為是陣列所以可以用foreach來抓陣列裡的值
         foreach ($arg as $value) {
             // 先檢查輸入的值是否為數字
-            if(is_numeric($value)){
-                
+            if (is_numeric($value)) {
+
                 $total += $value;
-        }}
+            }
+        }
         return $total;
     }
 
 
-    echo sum2(1,2);
+    echo sum2(1, 2);
     echo "<hr>";
-    echo sum2(23,45,89);
+    echo sum2(23, 45, 89);
     echo "<hr>";
-    echo sum2(23,98,34,89,22,3,4);
+    echo sum2(23, 98, 34, 89, 22, 3, 4);
     echo "<hr>";
-    
+
 
 
 
     ?>
 
 
+ <h2>自訂函式預設值</h2>
 
+ <?php
+    function sum3($a, $b, $c = 3)
+    {
+        $sum = ($a + $b) * $c;
+        echo "$a 、 $b , 倍數$c<br>";
 
+        return $sum;
+    }
+    // 不輸入$c，會直接帶 $c=3的預設值
+    echo "總和是" . sum3(10, 15);
+    // 也可以直接輸入$c，取代 $c=3的預設值
+    echo "總和是" . sum3(10, 15, 10);
+    // 原理跟substr（字串，開始位置，長度）一樣，
+    // 開始位置如果不輸入的話，預設值會從0開始
 
+    ?>
  <p>&nbsp;</p>
  <p>&nbsp;</p>
  <p>&nbsp;</p>
