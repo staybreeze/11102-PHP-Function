@@ -1,5 +1,6 @@
 <?php
-
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
+    $pdo = new PDO($dsn, 'root', '');
 //$rows=all('students',['dept'=>'3']);
 //$row=find('students',10);
 //$row=find('students',['dept'=>'1','graduate_at'=>'23']);
@@ -16,16 +17,27 @@
 // $row = del('students', 2);
 insert('dept',['code'=>'170','name'=>'戲劇系']);
 
+function pdo($db){
+    $dsn="mysql:host=localhost;charset=utf8;dbname=$db";
+    $pdo=new PDO($dsn,'root','');
+
+    return $pdo;
+}
 
 // -----all-----
 
 // SELECT `col1`,`col2`,... FROM `table1`,`table2`,...　WHERE ...
 function all($table = null, $where = '', $other = '')
 {
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=school";
-    $pdo = new PDO($dsn, 'root', '');
-    $sql = "select * from `$table` ";
+    // 如果重複的資料很多，就用include
+    // include "./include/connect.php";
 
+    $sql = "select * from `$table` ";
+    // 資料不多可以設成自訂函式
+    // $pdo=pdo('school');
+
+    // 也可以在全域設定並呼叫
+    global $pdo;
     if (isset($table) && !empty($table)) {
 
         if (is_array($where)) {
@@ -165,8 +177,7 @@ function del($table, $id)
 function insert($table,$values){
 
     
-$dsn = "mysql:host=localhost;charset=utf8;dbname=school";
-$pdo = new PDO($dsn, 'root', '');
+    global $pdo;
 
 $sql = "insert into `$table` ";
 
