@@ -17,6 +17,8 @@
 // $row = del('students', 2);
 insert('dept',['code'=>'170','name'=>'戲劇系']);
 
+// -----PDO自訂函式-----
+
 function pdo($db){
     $dsn="mysql:host=localhost;charset=utf8;dbname=$db";
     $pdo=new PDO($dsn,'root','');
